@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedTrust</title>
+    
+    <meta name="title" content="LinkedTrust">
+    <meta name="description" content="Minimal open schema for linked trust claims: a proposal">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="whitepaper">
+    <meta property="og:url" content="http://cooperation.org/linked_trust">
+    <meta property="og:title" content="Linked Trust">
+    <meta property="og:description" content="Minimal open schema for linked trust claims: a proposal">
+    <meta property="og:image" content="">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="http://cooperation.org/linked_trust">
+    <meta property="twitter:title" content="LinkedTrust">
+    <meta property="twitter:description" content="Minimal open schema for linked trust claims: a proposal">
+    <meta property="twitter:image" content="">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="src/notion.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/prismjs@1.22.0/themes/prism.css" rel="stylesheet" />
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div style="position:relative;
+    z-index: 1;
+    min-height:100%;
+    border:3px;
+    border-color:#fff;
+    border-style:solid;
+    min-width: 50px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding:5px;
+    display:block;
+    overflow-x:scroll;">
+
+    
+    <h1 class="title">Decentralized Trust</h1>
+    <p><b>Trust is a primitive</b>.  That is, assertions or claims about entities are essential components of any healthy system of interacting entities.  Without this capability, bad actors will proliferate: spammers, scammers, hackers, viruses, compromised nodes and decayed or broken endpoints.  Weyl, Ohlhaver & Buterin address trust in the wallet-owning crypto ecosystem with Soul-Bound Tokens, or SBTs.  This is a promising step.  
+</p><p>
+     Self-signed claims can act as a form of SBT but can also be applied to device ids, email addresses, legal corporate entities, product codes, or any other long-lived addressable entity.  A common schema for signed trust claims, containing enough information to identify the issuer and the context of the claim, creates a powerful tool for coordination against bad actors - or against any actor.  Misuse can be reduced by anchoring each user’s view of the network by their direct connections, and by gathering broad signals across domains.
+</p>
+<blockquote>
+Ideally, the same schema will support claims about servers, laundry detergent and human rights violations.
+</blockquote>
+<p>A widely used, heterogeneous trust network will be more robust against attack, and will enable important but rare applications.</p>
+<img src="simplified_design.png" alt="High-level design for decentralized trust system"/>
+<br/>
+
+
+
+<div class="triangle-accordion">
+    <h3 class="title" data-toggle="collapse" data-target="#useCases" aria-expanded="false" aria-controls="useCases">Use Case Examples</h3>
+<a id="acollapse" href="javascript:jQuery('.collapse').collapse('hide'); jQuery('#acollapse').hide();jQuery('#aexpand').show();" style="display: none;">Collapse All</a>
+
+    <a id="aexpand" href="javascript:jQuery('.collapse').collapse('show'); jQuery('#aexpand').hide(); jQuery('#acollapse').show();">Expand All</a>
+    
+<div id="useCases" class="collapse" style>
+
+<h4 class="title" data-toggle="collapse" data-target="#caseSpam" aria-expanded="false" aria-controls="caseSpam"> Spam: marking domains/headers/addresses as spammy, and preventing them from arriving</h4>
+
+<div id="caseSpam" class="collapse" style>
+For example: positive trust could be assigned if individual opened email and did not trash it, negative if trashed. Detailed claims can be stored in encrypted decentralized storage and only scores extracted as public claims against "spammy" domains or positive claims for "real" domains.  This way just normal behavior can automatically provide positive trust claims for legit domains.
+</div>
+
+<h4 class="title" data-toggle="collapse" data-target="#casePhone" aria-expanded="false" aria-controls="casePhone"> Planned calls only: whitelist any phone number mentioned in an opened email or gcal event</h4>
+
+<div id="casePhone" class="collapse" style>
+Static whitelist apps exist to prevent incoming calls from unknown numbers, but this also prevents calls from desired contacts or takes work to whitelist each one.  A positive trustclaim can be applied to any phone number in an opened email that was not trashed, or in a calendar event.  The details would be private to the user but the score on the phone number could be made public (optionally, or by paid lookup only to prevent sharing of good phone numbers; or, shared only to entities with a sufficiently high non-spam score themselves)
+</div>
+
+<h4 class="title" data-toggle="collapse" data-target="#caseDonors" aria-expanded="false" aria-controls="caseDonors">Verified Philanthropy: impacted recipients verify that social impact is real for them</h4>
+<div id="caseDonors" class="collapse" style>
+In philanthropy large amounts of funds are often spent on administration.  Verifying direct impact to the intended target population is important to ensure good use of funds.  Combining signed claims with photographic proof such as ProofMode (with metadata from the image) can generate many data points relating to social impact, signed by different recipients.  If the recipients ALSO use their id to perform other activities in the graph this will help prevent "cartel" circles of false assertions.  
+</div>
+<h4 class="title" data-toggle="collapse" data-target="#caseWork" aria-expanded="false" aria-controls="caseWork">Work Performed: Peer reviewed work, whether on a task tracker or github, is a useful source of reputation</h4>
+<div id="caseWork" class="collapse" style>
+Portable reputation based on units of peer reviewed work allow developers and team members to more easily move between projects.  It is also possible to verify login on github, upwork or other platforms and import web2 reputation.  This can be issued in an NFT into the developer's wallet but also can be used as an input to other trust score generation. 
+</div>
+<h4 class="title" data-toggle="collapse" data-target="#caseUptime" aria-expanded="false" aria-controls="caseUptime">Server Reliability: It is possible to use the same format for recording data about servers and network nodes</h4>
+<div id="caseUptime" class="collapse" style>
+In a decentralized network, the "bad actors" are servers or nodes that are unreliable, or worse, have some corrupted data or have been hacked.  Allowing network nodes to automatically issue an claim about a node that fails a reliability or verification check can create an automated network to solve the byzantine generals problem.  Essentially it is a decentralized gossip network.
+</div>
+
+<h4 class="title" data-toggle="collapse" data-target="#caseDaos" aria-expanded="false" aria-controls="caseDaos">DAO Tooling: Reputation is key in a fluid DAO ecosystem</h4>
+<div id="caseDaos" class="collapse" style>
+See <a href="https://docs.google.com/document/d/1R2sode63KhD3WEiyhI10nwfB0TyaQ1Cn9G9Wow6lAZE/edit">Transparency not Permission: DAO tools for flow</a>
+</div>
+
+</div> <!-- use cases -->
+
+<h3 class="title" data-toggle="collapse" data-target="#Arch" aria-expanded="false" aria-controls="Arch">Architecture</h3>
+<div id="Arch" class="collapse" style>
+<img src="arch.png" alt="open trust claims architecture design"/>
+<p>
+<b>Key points:</b>
+</p>
+<p>
+* The granular signed trust claims act like a kafka event stream essentially - immutable stream of signed claims written to some decentralized storage.  If Ceramic is used as the data layer, then the updates will be on libp2p.  However the important thing is that the trustclaims are published and can be subscribed to in some manner, or at least spidered and scraped (which if the subject is a URI should be easy to do).  
+</p>
+<p>
+* Trust claims can be linked.  The issuer of a claim who signs it can <b>also</b> be the subject of a claim.  A claim may also be a relationship, ie that two identifiers have common control or are same_as.  
+</p>
+<p>
+* Models aggregate claims.  Alternate models can be generated from the same data pool of linked trust claims, and their predictions can be evaluated.  
+</p>
+<p>
+* Aggregators can protect privacy.  In many cases the granular claims should not be exposed publicly.  However the trust predictions from aggregated claims may be valuable and acceptable to share.  Some nodes will therefore have private trust claim data stores but will produce predictive output from a combination of private and public data.
+</p>
+</div>
+
+<h3 class="title" data-toggle="collapse" data-target="#Schema" aria-expanded="false" aria-controls="Schema">Schema</h3>
+<div id="Schema" class="collapse" style>
+<p>
+To achieve decentralized, permissionless architecture it is critical that a shared schema be adopted.  After discussions and experimentation in the dSocialCommons.org space the following schema is proposed: https://github.com/blueskyCommunity/OpenTrustClaims
+</p>
+<pre>
+# simplest possible conceptual framework
+# that fully matches the use cases
+# note that reason and source can be lists
+
+issuer : who says
+claim: 
+    
+      subject: structured obj, text or did
+      claim: fixed-vocab-string
+      object: structured obj, text or did
+      qualifer: string, (optional)
+      aspect: fixed-vocab-string (optional)
+      
+      how_known: thing or array of thing
+      source: thing or array of thing
+      effective_date: date
+      
+      confidence: float, 0..1 (optional)
+
+      reviewRating: (can use existing from schema.org, optional)
+              rating: float, optional
+              rating_max: float, optional
+              rating_min: float, optiona
+
+signature:
+date_signed:
+</pre>
+
+</div>
+
+<h3 class="title" data-toggle="collapse" data-target="#Biz" aria-expanded="false" aria-controls="Biz">Business Models/Tokenomics</h3>
+<div id="Biz" class="collapse" style>
+<p>
+Token economy: micropayments for predictions and for key/valuable inputs.  Free to create assertions but only those subscribed to them will store.
+</p>
+<p>
+B2B: risk is often outsourced ie to companies such as TechRadar.  Generalized risk scores can help small/new companies esp in web3 protect themselves against attackers, spammers and scammers.  
+</p>
+<p>
+Positive advertising: entities identified with positive reputation may be willing to pay for advertising/coupons based on their positive credible reputation scores 
+</p>
+<p>
+...TBD here...
+</p>
+</div><!-- Biz -->
+
+</div> <!-- end of collapsible section -->
+<div>
+<pre> 
+## 
+
+TBD:
+
+## Related Work
+
+## Applications
+
+### For DAOs
+
+### Decentralized Content Moderation
+
+### Networked Systems
+
+---
+
+## Risk Mitigations
+
+## Driving Adoption
+</pre>
+
+<h3>Live Demo (in progress)</h3>
+<p>
+<a href="http://trustclaims.whatscookin.us">trustclaims.whatscookin.us</a>
+</p>
+<h3>Get Involved</h3>
+<p>
+Please contact <a href="https://twitter.com/gvelez17">https://twitter.com/gvelez17</a> or <a href="https://whatscookin.us">https://whatscookin.us</a>
+</p>
+<h3>Credits</h3>
+<p>
+Thanks to Harlan Wood and Mark Foster for valuable early feedback and ideas, and to the Bluesky organization for supporting dSocialCommons where these discussions took place.
+</p>
+</div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.22.0/prism.min.js"></script>
+	<script src="https://myCDN.com/prism@v1.x/plugins/autoloader/prism-autoloader.min.js"></script></body>
+</html>
